@@ -62,7 +62,7 @@ class Functions{
 	def writeListAsLinesToLog(list, i, path, date){
 		def errorLogFile = new File(path + "\\Fails\\" + date + "\\row " + (i+1) +".txt");
 		for (line in list){
-			//log.info line.toString()
+			log.info line.toString()
 			errorLogFile.append (line.toString());
 		}
 	}

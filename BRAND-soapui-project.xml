@@ -52,7 +52,6 @@ for(def i=1; i&lt;totalRows; i++){
 	 }
 
 	//API call .run()
-	log.info "RUNNING quotePost: " + i
 	testRunner.runTestStepByName("quotePost")
 
 	//REQUEST being send
