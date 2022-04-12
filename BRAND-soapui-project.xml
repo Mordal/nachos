@@ -52,6 +52,7 @@ for(def i=1; i&lt;totalRows; i++){
 	 }
 	
 	//API call .run()
+	log.info "RUNNING quotePost: " + i
 	testRunner.runTestStepByName("quotePost")
 
 	//REQUEST being send
@@ -59,7 +60,10 @@ for(def i=1; i&lt;totalRows; i++){
 	
 	//Create requestLog
 	def requestLog = new File(projectPath + "\\Requests\\" + date + "\\row " + (i+1) +".txt");
-	requestLog.write (request);
+	log.info "###############################"
+	log.info request
+	log.info "###############################"
+	//requestLog.write (request);
 
 
 	// -- RESPONSE --
