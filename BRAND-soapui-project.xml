@@ -49,8 +49,12 @@ for(def i=1; i&lt;totalRows; i++){
 	for (var in variables.getPropertyList()){
 		//the variable name is extracted from property list. Then, correct column is selected using the function 'getColumn()
 		variables.setPropertyValue(var.getName(),row.getCell(Functions.getColumn(var.getName(), ws, totalColumns)).toString())
+	 	log.info var.getName()+ " - " + var.getValue()
 	 }
 	
+	
+
+
 	//API call .run()
 	log.info "RUNNING quotePost: " + i
 	testRunner.runTestStepByName("quotePost")
