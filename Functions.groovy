@@ -39,7 +39,6 @@ class Functions{
 			case "FORMULA":
 			case 2:
 					log.info "getCachedFormulaResultType() :" + cell.getCachedFormulaResultType()
-					log.info "cell string: " + cell.toString()
 				    switch (cell.getCachedFormulaResultType()) {
         				case "BOOLEAN":
 						case 4:
@@ -68,7 +67,7 @@ class Functions{
 				value = "LEEG"
 				break;
 		}
-
+		log.info "String passed: " + value.toString()
 		return value
 	}
 
@@ -118,14 +117,15 @@ class Functions{
 
 	//check the difference between 2 values: <=0.05 is acceptable
 	def checkValues(val1,val2){
-
+		def float dec1 
+		def float dec2
 		try{
-		float dec1 = Float.parseFloat(val1);
-		float dec2 = Float.parseFloat(val2);
+			dec1 = Float.parseFloat(val1);
+			dec2 = Float.parseFloat(val2);
 		}
 		catch(Exception e){
-			log.info val1
-			log.info val2
+			log.info "EXCEPTION val1: " + val1
+			log.info "EXCEPTION val2: " +val2
 		}
 		//make the value absolute and truncate at 2 decimals
 		def difference = Math.abs(dec1 - dec2).trunc(2)
