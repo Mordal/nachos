@@ -26,12 +26,18 @@ class Functions{
 	//Return the value of a cell, rather than the formula and no matter what type
 	def getCellValue(cell){
 		def value
-		log.info cell.getCellType()
+	//	log.info cell.getCellType()
+	//	log.info cell.getCellType().getCode()
+
+		// The .getCellType() methode returns a numeric value or the name of the type depending on the POI version used; 
+		// This is coverd in the switch-case.
 		switch (cell.getCellType()){
 			case "BOOLEAN":
+			case 4:
             	value = cell.getBooleanCellValue();
             	break;
 			case "FORMULA":
+			case 2:
 				    switch (cell.getCachedFormulaResultType()) {
         				case "BOOLEAN":
             				value = cell.getBooleanCellValue();
@@ -45,13 +51,15 @@ class Functions{
 					}
 				break;
 			case "STRING":
+			case 1:
 				value = cell.getRichStringCellValue();
 				break;
 			case "NUMERIC":
-					value = cell.getNumericCellValue();
+			case 0:
+				value = cell.getNumericCellValue();
 				break;
 			default:
-				value = cell.toString()
+				value = "LEEG"
 				break;
 		}
 
