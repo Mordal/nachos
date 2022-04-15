@@ -88,7 +88,7 @@ class Functions{
 		catch(FileNotFoundException e){
 			//when the file is open, save in new file	!!If the second one is also open = infinite loop!!
 			log.error " xls FILE OPEN - Saving in new file..."
-			saveFile("Testcases_NEW");
+			saveFile(name + "_NEW", path, wb);
 		}
 	}
 

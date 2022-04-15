@@ -6,6 +6,7 @@ import groovy.json.JsonSlurper
 
 
 //Global variables
+def stopAtLine = 1  //0 = run all
 date = new Date().format( 'yyyyMMdd' )
 def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
 projectPath = groovyUtils.projectPath
@@ -59,6 +60,7 @@ for(def i=1; i&lt;totalRows; i++){
 
 	//REQUEST being send
 	request = context.expand( '${Quote#RawRequest}' )
+	log.info request
 	
 	//Create requestLog
 	def requestLog = new File(projectPath + "\\Requests\\" + date + "\\row " + (i+1) +".txt");
@@ -173,9 +175,9 @@ for(def i=1; i&lt;totalRows; i++){
 	}
 
 	//stop loop
-	//if(i == 1){
-//		break;
-//	}
+	if(i == stopAtLine){
+		break;
+	}
 }
 
 //Save file
