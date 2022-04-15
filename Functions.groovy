@@ -26,6 +26,7 @@ class Functions{
 	//Return the value of a cell, rather than the formula and no matter what type
 	def getCellValue(cell){
 		def value
+		log.info cell.getCellType()
 		switch (cell.getCellType()){
 			case "BOOLEAN":
             	value = cell.getBooleanCellValue();
@@ -50,7 +51,7 @@ class Functions{
 					value = cell.getNumericCellValue();
 				break;
 			default:
-				value = "LEEG"
+				value = cell.toString()
 				break;
 		}
 
