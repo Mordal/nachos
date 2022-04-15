@@ -18,9 +18,43 @@ class Functions{
 			if (cell.toString() == name){
 			colmnNumber = j
 			break;
-				}
+			}
 		}
 		return colmnNumber
+	}
+
+	//Return the value of a cell, rather than the formula and no matter what type
+	def getCellValue(cell){
+		def value
+		switch (cell.getCellType()){
+			case "BOOLEAN":
+            	value = cell.getBooleanCellValue();
+            	break;
+			case "FORMULA":
+				    switch (cell.getCachedFormulaResultType()) {
+        				case "BOOLEAN":
+            				value = cell.getBooleanCellValue();
+            				break;
+        				case "NUMERIC":
+           				 	value = cell.getNumericCellValue();
+            				break;
+        				case "STRING":
+            				value = cell.getRichStringCellValue();
+            				break;
+					}
+				break;
+			case "STRING":
+				value = cell.getRichStringCellValue();
+				break;
+			case "NUMERIC":
+					value = cell.getNumericCellValue();
+				break;
+			default:
+				value = "LEEG"
+				break;
+		}
+
+		return value
 	}
 
 	//create Error Log Text from given arguments
