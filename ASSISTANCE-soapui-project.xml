@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="7a010f36-6ba2-465f-85cd-90e23781a0ec" activeEnvironment="Default" name="ASSISTANCE" resourceRoot="" soapui-version="5.6.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="7a531625-4acc-431a-9992-35ab6aa2c1b3" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://test.api.coronadirect.be" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://${#Project#BaseURL}</con:endpoint><con:endpoint>https://test.api.coronadirect.be</con:endpoint></con:endpoints><con:resource name="quote" path="/external/assistance/insurance/v1/quote" id="1a2c436e-7bca-4108-83f1-b158e70edd04"><con:settings/><con:parameters/><con:method name="Method 1" id="dbe7cb1d-13ce-4a09-a898-b91822a11ed3" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>500</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>500</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Quote Assistance" id="53292f9e-1740-457e-8cf1-7507661abda4" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://test.api.coronadirect.be</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:testSuite id="9b9cae2c-5a27-40c2-bc4e-72cca68560da" name="QuoteAssistance"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="0e4d55e6-262c-4eb0-9128-b37d5c7eb2e6" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="QUOTE" searchProperties="true"><con:settings/><con:testStep type="groovy" name="LoadTestData" id="505aa7af-1927-48fd-bc74-0709bbaa6a7e"><con:settings/><con:config><script>import org.apache.poi.ss.usermodel.*
+<con:soapui-project id="7a010f36-6ba2-465f-85cd-90e23781a0ec" activeEnvironment="Default" name="ASSISTANCE" resourceRoot="" soapui-version="5.6.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="7a531625-4acc-431a-9992-35ab6aa2c1b3" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://test.api.coronadirect.be" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://${#Project#BaseURL}</con:endpoint><con:endpoint>https://test.api.coronadirect.be</con:endpoint></con:endpoints><con:resource name="quote" path="/external/assistance/insurance/v1/quote" id="1a2c436e-7bca-4108-83f1-b158e70edd04"><con:settings/><con:parameters/><con:method name="Method 1" id="dbe7cb1d-13ce-4a09-a898-b91822a11ed3" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>500</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>500</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>500</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>500</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Quote Assistance" id="53292f9e-1740-457e-8cf1-7507661abda4" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://test.api.coronadirect.be</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:testSuite id="9b9cae2c-5a27-40c2-bc4e-72cca68560da" name="QuoteAssistance"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="0e4d55e6-262c-4eb0-9128-b37d5c7eb2e6" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="QUOTE" searchProperties="true"><con:settings/><con:testStep type="groovy" name="LoadTestData" id="505aa7af-1927-48fd-bc74-0709bbaa6a7e"><con:settings/><con:config><script>import org.apache.poi.ss.usermodel.*
 import org.apache.poi.hssf.usermodel.*
 import org.apache.poi.ss.util.*
 import groovy.json.JsonSlurper
 
 
 //Global variables
-def stopAtLine = 1  //0 = run all
+def stopAtLine = 0  //0 = run all
+
 date = new Date().format( 'yyyyMMdd' )
 def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
 projectPath = groovyUtils.projectPath
@@ -48,41 +49,40 @@ for(def i=1; i&lt;totalRows; i++){
 	
 	//Populate variables with data from excel
 	for (var in variables.getPropertyList()){
+		//correct column is selected using the function 'getColumn()
 		Cell cell = row.getCell(Functions.getColumn(var.getName(), ws, totalColumns))
-		//log.info Functions.getCellValue(cell)
 		
-		//the variable name is extracted from property list. Then, correct column is selected using the function 'getColumn()
+		//the variable name is extracted from property list. Value from cell is extracted with function
 		variables.setPropertyValue(var.getName(),Functions.getCellValue(cell).toString())
 	 }
-
+	 
+//-- REQUEST --
 	//API call .run()
 	testRunner.runTestStepByName("Quote")
 
-	//REQUEST being send
+	//Request as String
 	request = context.expand( '${Quote#RawRequest}' )
-	log.info request
 	
 	//Create requestLog
 	def requestLog = new File(projectPath + "\\Requests\\" + date + "\\row " + (i+1) +".txt");
 	requestLog.write (request);
 
 
-	// -- RESPONSE --
-
+// -- RESPONSE --
 	def httpResponseHeaders = context.testCase.testSteps["Quote"].testRequest.response.responseHeaders
 	def httpStatus = httpResponseHeaders["#status#"]
 	def httpStatusCode = (httpStatus =~ "[1-5]\\d\\d")[0]
 
 	
-		//if JSON is not correct, statusCode will be 500
+	//if JSON is not correct, statusCode will be 500
 	if (httpStatusCode != "500"){
 		response = context.expand( '${Quote#Response}' )
 		def jsonSlurper = new JsonSlurper()
 		def object = jsonSlurper.parseText(response)
+
 		
-	// -- ASSERTIONS --
-	
-			//Check if server accepted the request, or if the returnCode is as expected
+// -- ASSERTIONS --
+		//Check if server accepted the request, or if the returnCode is as expected
 		try {
 	 		assert object[0].control.applicationReturnCode == variables.getPropertyValue("returnCode")
 		}
@@ -90,10 +90,10 @@ for(def i=1; i&lt;totalRows; i++){
 			fail = true
 			errorLog.addAll(Functions.createErrorLogText("ApplicationReturnCode not "+ variables.getPropertyValue("returnCode")+" \n" + "errorMessage: " + object[0].control.errorMessage ,variables.getPropertyValue("returnCode"),object[0].control.applicationReturnCode))
 		}
-			//only if the returnCode is 00000, the following assertions can be done
+		//only if the returnCode is 00000, the following assertions can be done
 		if (object[0].control.applicationReturnCode == '00000'){
 			
-				//Check if premium CAR is as expected
+			//Check if premium CAR is as expected
 			try {
 		 		assert Functions.checkValues(object[0].results.premiumCar.toString(), variables.getPropertyValue("premiumCar"))
 			}
@@ -102,7 +102,7 @@ for(def i=1; i&lt;totalRows; i++){
 				errorLog.addAll(Functions.createErrorLogText("premium CAR FAIL",variables.getPropertyValue("premiumCar"),object[0].results.premiumCar))
 			}	
 			
-				//Check if premium Motor is as expected
+			//Check if premium Motor is as expected
 			try {
 		 		assert Functions.checkValues(object[0].results.premiumMotor.toString(), variables.getPropertyValue("premiumMotor"))
 			}
@@ -111,7 +111,7 @@ for(def i=1; i&lt;totalRows; i++){
 				errorLog.addAll(Functions.createErrorLogText("premium Motor FAIL",variables.getPropertyValue("premiumMotor"),object[0].results.premiumMotor))
 			}	
 			
-				//Check if premium Bicycle is as expected
+			//Check if premium Bicycle is as expected
 			try {
 		 		assert Functions.checkValues(object[0].results.premiumBicycle.toString(), variables.getPropertyValue("premiumBicycle"))
 			}
@@ -120,7 +120,7 @@ for(def i=1; i&lt;totalRows; i++){
 				errorLog.addAll(Functions.createErrorLogText("premium Bicycle FAIL",variables.getPropertyValue("premiumBicycle"),object[0].results.premiumBicycle))
 			}	
 			
-				//Check if premium Personal Assistance is as expected
+			//Check if premium Personal Assistance is as expected
 			try {
 		 		assert Functions.checkValues(object[0].results.premiumPersonalAssistance.toString(), variables.getPropertyValue("premiumPersonalAssistance"))
 			}
@@ -128,7 +128,7 @@ for(def i=1; i&lt;totalRows; i++){
 				fail = true
 				errorLog.addAll(Functions.createErrorLogText("premium Personal Assistance FAIL",variables.getPropertyValue("premiumPersonalAssistance"),object[0].results.premiumPersonalAssistance))
 			}	
-				//Check if premium Luggage is as expected
+			//Check if premium Luggage is as expected
 			try {
 		 		assert Functions.checkValues(object[0].results.premiumLuggage.toString(), variables.getPropertyValue("premiumLuggage"))
 			}
@@ -137,7 +137,7 @@ for(def i=1; i&lt;totalRows; i++){
 				errorLog.addAll(Functions.createErrorLogText("premium Luggage FAIL",variables.getPropertyValue("premiumLuggage"),object[0].results.premiumLuggage))
 			}	
 
-				//Check if premium Total is as expected
+			//Check if premium Total is as expected
 			try {
 		 		assert Functions.checkValues(object[0].results.premiumTotal.toString(), variables.getPropertyValue("premiumTotal"))
 			}
@@ -146,7 +146,7 @@ for(def i=1; i&lt;totalRows; i++){
 				errorLog.addAll(Functions.createErrorLogText("premium Total FAIL",variables.getPropertyValue("premiumTotal"),object[0].results.premiumTotal))
 			}
 
-				//Check if premium Total Incl Discount is as expected
+			//Check if premium Total Incl Discount is as expected
 			try {
 		 		assert Functions.checkValues(object[0].results.premiumTotalInclDiscount.toString(), variables.getPropertyValue("premiumTotalInclDiscount"))
 			}
@@ -156,6 +156,9 @@ for(def i=1; i&lt;totalRows; i++){
 			}
 		}
 	}
+
+	
+// -- CREATE LOGS --
 	// When httpStatusCode == 500:
 	else{ 
 		fail = true
@@ -163,7 +166,7 @@ for(def i=1; i&lt;totalRows; i++){
 		errorLog &lt;&lt; httpStatus
 	}
 		
-	//Create and write Logs
+	//Create and write .txt logs
 	if (fail){
 		log.error "  Row " + (i+1) + " - FAIL"
 		Functions.writeListAsLinesToLog(errorLog, i, projectPath, date);
@@ -180,8 +183,11 @@ for(def i=1; i&lt;totalRows; i++){
 	}
 }
 
-//Save file
-Functions.saveFile("TestCases-Assistance-Quote", projectPath, wb);
+// -- AFTER ALL --
+//Save file - but only if not run on devOps
+if (projectPath != "D:\\a\\1\\s"){
+	Functions.saveFile("TestCases-Assistance-Quote", projectPath, wb);
+}
 
 
 
@@ -210,4 +216,4 @@ Functions.saveFile("TestCases-Assistance-Quote", projectPath, wb);
         }
     }
 }]
-</con:request><con:originalUri>https://test.api.coronadirect.be/external/assistance/insurance/v1/quote</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="properties" name="Variables" id="05c99922-55ce-48e2-8ccc-c9494defd463"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>digitalSigning</con:name><con:value>LEEG</con:value></con:property><con:property><con:name>numberOfCars</con:name><con:value>1.0</con:value></con:property><con:property><con:name>numberOfMotors</con:name><con:value>1.0</con:value></con:property><con:property><con:name>numberOfBicyclesAndOthers</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfFamilyMembers</con:name><con:value>0.0</con:value></con:property><con:property><con:name>personalAssistance</con:name><con:value>true</con:value></con:property><con:property><con:name>luggage</con:name><con:value>true</con:value></con:property><con:property><con:name>frequencyCode</con:name><con:value>1</con:value></con:property><con:property><con:name>packageType</con:name><con:value>EU</con:value></con:property><con:property><con:name>returnCode</con:name><con:value>00000</con:value></con:property><con:property><con:name>premiumCar</con:name><con:value>85.0</con:value></con:property><con:property><con:name>premiumMotor</con:name><con:value>85.0</con:value></con:property><con:property><con:name>premiumBicycle</con:name><con:value>0.0</con:value></con:property><con:property><con:name>premiumPersonalAssistance</con:name><con:value>50.0</con:value></con:property><con:property><con:name>premiumLuggage</con:name><con:value>35.0</con:value></con:property><con:property><con:name>premiumTotal</con:name><con:value>255.0</con:value></con:property><con:property><con:name>premiumTotalInclDiscount</con:name><con:value>204.0</con:value></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</con:request><con:originalUri>https://test.api.coronadirect.be/external/assistance/insurance/v1/quote</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="properties" name="Variables" id="05c99922-55ce-48e2-8ccc-c9494defd463"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>digitalSigning</con:name><con:value>false</con:value></con:property><con:property><con:name>numberOfCars</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfMotors</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfBicyclesAndOthers</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfFamilyMembers</con:name><con:value>0.0</con:value></con:property><con:property><con:name>personalAssistance</con:name><con:value>false</con:value></con:property><con:property><con:name>luggage</con:name><con:value>false</con:value></con:property><con:property><con:name>frequencyCode</con:name><con:value>1</con:value></con:property><con:property><con:name>packageType</con:name><con:value>BE</con:value></con:property><con:property><con:name>returnCode</con:name><con:value>99999</con:value></con:property><con:property><con:name>premiumCar</con:name><con:value>0.0</con:value></con:property><con:property><con:name>premiumMotor</con:name><con:value>0.0</con:value></con:property><con:property><con:name>premiumBicycle</con:name><con:value>0.0</con:value></con:property><con:property><con:name>premiumPersonalAssistance</con:name><con:value>50.0</con:value></con:property><con:property><con:name>premiumLuggage</con:name><con:value>35.0</con:value></con:property><con:property><con:name>premiumTotal</con:name><con:value>0.0</con:value></con:property><con:property><con:name>premiumTotalInclDiscount</con:name><con:value>0.0</con:value></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
