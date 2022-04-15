@@ -117,7 +117,7 @@ class Functions{
 		float dec1 = Float.parseFloat(val1);
 		float dec2 = Float.parseFloat(val2);
 		}
-		catch{
+		catch(Exception e){
 			log.info val1
 			log.info val2
 		}
