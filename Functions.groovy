@@ -112,8 +112,15 @@ class Functions{
 
 	//check the difference between 2 values: <=0.05 is acceptable
 	def checkValues(val1,val2){
+
+		try{
 		float dec1 = Float.parseFloat(val1);
 		float dec2 = Float.parseFloat(val2);
+		}
+		catch{
+			log.info val1
+			log.info val2
+		}
 		//make the value absolute and truncate at 2 decimals
 		def difference = Math.abs(dec1 - dec2).trunc(2)
 		if (difference > 0.05){
