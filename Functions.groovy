@@ -38,14 +38,18 @@ class Functions{
             	break;
 			case "FORMULA":
 			case 2:
+					log.info cell.getCachedFormulaResultType()
 				    switch (cell.getCachedFormulaResultType()) {
         				case "BOOLEAN":
+						case 4:
             				value = cell.getBooleanCellValue();
             				break;
         				case "NUMERIC":
+						case 0:
            				 	value = cell.getNumericCellValue();
             				break;
         				case "STRING":
+						case 1:
             				value = cell.getRichStringCellValue();
             				break;
 					}
