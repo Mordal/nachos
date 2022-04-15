@@ -38,22 +38,20 @@ class Functions{
             	break;
 			case "FORMULA":
 			case 2:
-					log.info "getCachedFormulaResultType() :" + cell.getCachedFormulaResultType()
-				    switch (cell.getCachedFormulaResultType()) {
-        				case "BOOLEAN":
-						case 4:
-            				value = cell.getBooleanCellValue();
-            				break;
-        				case "NUMERIC":
-						case 0:
-           				 	value = cell.getNumericCellValue();
-							log.info "value: " + value
-            				break;
-        				case "STRING":
-						case 1:
-            				value = cell.getRichStringCellValue();
-            				break;
-					}
+				switch (cell.getCachedFormulaResultType()) {
+        			case "BOOLEAN":
+					case 4:
+            			value = cell.getBooleanCellValue();
+            			break;
+        			case "NUMERIC":
+					case 0:
+           				value = cell.getNumericCellValue();
+            			break;
+        			case "STRING":
+					case 1:
+            			value = cell.getRichStringCellValue();
+            			break;
+				}
 				break;
 			case "STRING":
 			case 1:
@@ -67,8 +65,7 @@ class Functions{
 				value = "LEEG"
 				break;
 		}
-		log.info "String passed: " + value.toString()
-		return value
+		return value.toString()
 	}
 
 	//create Error Log Text from given arguments
