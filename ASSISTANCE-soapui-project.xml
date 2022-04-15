@@ -6,7 +6,7 @@ import groovy.json.JsonSlurper
 
 
 //Global variables
-def stopAtLine = 0  //0 = run all
+def stopAtLine = 1  //0 = run all
 
 date = new Date().format( 'yyyyMMdd' )
 def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
@@ -54,11 +54,6 @@ for(def i=1; i&lt;totalRows; i++){
 		
 		//the variable name is extracted from property list. Value from cell is extracted with function
 		variables.setPropertyValue(var.getName(),Functions.getCellValue(cell).toString())
-		
-		//DEBUG--
-		if (i==5){
-			log.info Functions.getCellValue(cell).toString()
-		}
 	 }
 	 
 //-- REQUEST --
@@ -68,10 +63,6 @@ for(def i=1; i&lt;totalRows; i++){
 	//Request as String
 	request = context.expand( '${Quote#RawRequest}' )
 			
-		//DEBUG--
-		if (i==5){
-			log.info request
-		}
 	
 	//Create requestLog
 	def requestLog = new File(projectPath + "\\Requests\\" + date + "\\row " + (i+1) +".txt");
@@ -88,10 +79,6 @@ for(def i=1; i&lt;totalRows; i++){
 	if (httpStatusCode != "500"){
 		response = context.expand( '${Quote#Response}' )
 
-		//DEBUG--
-		if (i==5){
-			log.info response
-		}
 
 		def jsonSlurper = new JsonSlurper()
 		def object = jsonSlurper.parseText(response)
@@ -103,6 +90,9 @@ for(def i=1; i&lt;totalRows; i++){
 	 		assert object[0].control.applicationReturnCode == variables.getPropertyValue("returnCode")
 		}
 		catch (AssertionError e) {
+
+			log.info "assert returncode"
+
 			fail = true
 			errorLog.addAll(Functions.createErrorLogText("ApplicationReturnCode not "+ variables.getPropertyValue("returnCode")+" \n" + "errorMessage: " + object[0].control.errorMessage ,variables.getPropertyValue("returnCode"),object[0].control.applicationReturnCode))
 		}

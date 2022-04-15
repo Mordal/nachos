@@ -38,7 +38,8 @@ class Functions{
             	break;
 			case "FORMULA":
 			case 2:
-					log.info cell.getCachedFormulaResultType()
+					log.info "getCachedFormulaResultType() :" + cell.getCachedFormulaResultType()
+					log.info "cell string: " + cell.toString()
 				    switch (cell.getCachedFormulaResultType()) {
         				case "BOOLEAN":
 						case 4:
@@ -47,6 +48,7 @@ class Functions{
         				case "NUMERIC":
 						case 0:
            				 	value = cell.getNumericCellValue();
+							log.info "value: " + value
             				break;
         				case "STRING":
 						case 1:
