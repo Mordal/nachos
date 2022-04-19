@@ -191,9 +191,9 @@ for(def i=1; i&lt;totalRows; i++){
 
 // -- AFTER ALL --
 //Save file - but only if not run on devOps
-//if (projectPath != "D:\\a\\1\\s"){
+if (projectPath != "D:\\a\\1\\s"){
 	Functions.saveFile("TestCases-Assistance-Quote", projectPath, wb);
-//}
+}
 
 
 
