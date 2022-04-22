@@ -29,41 +29,46 @@ class Functions{
 	//	log.info cell.getCellType()
 	//	log.info cell.getCellType().getCode()
 
-		// The .getCellType() methode returns a numeric value or the name of the type depending on the POI version used; 
-		// This is coverd in the switch-case.
-		switch (cell.getCellType()){
-			case "BOOLEAN":
-			case 4:
-            	value = cell.getBooleanCellValue();
-            	break;
-			case "FORMULA":
-			case 2:
-				switch (cell.getCachedFormulaResultType()) {
-        			case "BOOLEAN":
-					case 4:
-            			value = cell.getBooleanCellValue();
-            			break;
-        			case "NUMERIC":
-					case 0:
-           				value = cell.getNumericCellValue();
-            			break;
-        			case "STRING":
-					case 1:
-            			value = cell.getRichStringCellValue();
-            			break;
-				}
-				break;
-			case "STRING":
-			case 1:
-				value = cell.getRichStringCellValue();
-				break;
-			case "NUMERIC":
-			case 0:
-				value = cell.getNumericCellValue();
-				break;
-			default:
-				value = "LEEG"
-				break;
+		if (null != cell) {
+			// The .getCellType() methode returns a numeric value or the name of the type depending on the POI version used; 
+			// This is coverd in the switch-case.
+			switch (cell.getCellType()){
+				case "BOOLEAN":
+				case 4:
+					value = cell.getBooleanCellValue();
+					break;
+				case "FORMULA":
+				case 2:
+					switch (cell.getCachedFormulaResultType()) {
+						case "BOOLEAN":
+						case 4:
+							value = cell.getBooleanCellValue();
+							break;
+						case "NUMERIC":
+						case 0:
+							value = cell.getNumericCellValue();
+							break;
+						case "STRING":
+						case 1:
+							value = cell.getRichStringCellValue();
+							break;
+					}
+					break;
+				case "STRING":
+				case 1:
+					value = cell.getRichStringCellValue();
+					break;
+				case "NUMERIC":
+				case 0:
+					value = cell.getNumericCellValue();
+					break;
+				default:
+					value = ""
+					break;
+			}
+		}
+		else{
+			value = ""
 		}
 		return value.toString()
 	}
@@ -97,7 +102,7 @@ class Functions{
 			log.info name + ".xls updated and saved"
 		}
 		catch(FileNotFoundException e){
-			//when the file is open, save in new file	!!If the second one is also open = infinite loop!!
+			//when the file is open, save in new file
 			log.error " xls FILE OPEN - Saving in new file..."
 			saveFile(name + "_NEW", path, wb);
 		}
