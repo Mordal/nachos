@@ -61,7 +61,7 @@ import groovy.json.JsonSlurper
 
 
 //Global variables
-def stopAtLine = 20  //0 = run all
+def stopAtLine = 0  //0 = run all
 
 date = new Date().format( 'yyyyMMdd' )
 def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
