@@ -61,21 +61,16 @@ import groovy.json.JsonSlurper
 
 
 //Global variables
-def stopAtLine = 12  //0 = run all
-
+def stopAtLine = 0  //0 = run all
+def excelName = "TestCases-Assistance-Quote"
 date = new Date().format( 'yyyyMMdd' )
 def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
 projectPath = groovyUtils.projectPath
 log.info "Detected project path: " + projectPath
-//projectPath = "D:\\a\\1\\s";
 def variables = testRunner.testCase.getTestStepByName("Variables")
-
 def tCaseRun = testRunner.testCase.testSuite.testCases["QUOTE"]
-//def variables  = tCaseRun.TestSteps["Variables"]
-
 def fail = false
 errorLog = []
-errorLines = []
 
 
 //Initiate external Functions.groovy
@@ -86,7 +81,7 @@ Functions.printCall()
 
 	
 // Initiate EXCEL
-def inputStream = new FileInputStream(projectPath+"\\TestCases-Assistance-Quote.xls");
+def inputStream = new FileInputStream(projectPath + "\\" + excelName + ".xls");
 HSSFWorkbook wb = new HSSFWorkbook(inputStream);
 HSSFSheet ws = wb.getSheet("TestCases")  
 def totalRows = ws.getPhysicalNumberOfRows()
@@ -117,15 +112,12 @@ for(def i=1; i<totalRows; i++){
 	 
 //-- REQUEST --
 	//API call .run()
-	//testRunner.runTestStepByName("Quote")
-	//tCaseRun.runTestStepByName("Quote")
 	def tStep = tCaseRun.getTestStepByName("Quote")
 	def runner = tStep.run(testRunner, context)
 	
 	
 	//Request as String
 	request = runner.getTestStep().getPropertyValue('RawRequest')
-	//log.info request
 	
 	//Create requestLog
 	def requestLog = new File(projectPath + "\\Requests\\" + date + "\\row " + (i+1) +".txt");
@@ -134,14 +126,12 @@ for(def i=1; i<totalRows; i++){
 
 // -- RESPONSE --
 	def httpResponseHeaders = runner.getTestStep().testRequest.response.responseHeaders    //context.testCase.testSteps["Quote"].testRequest.response.responseHeaders
-	//log.info httpResponseHeaders
 	def httpStatus = httpResponseHeaders["#status#"]
 	def httpStatusCode = (httpStatus =~ "[1-5]\\d\\d")[0]
 
 	
 	//if JSON is not correct, statusCode will be 500
 	if (httpStatusCode != "500"){
-		//response = context.expand( '${Quote#Response}' )
 		response = runner.getTestStep().getPropertyValue('Response')
 		def jsonSlurper = new JsonSlurper()
 		def object = jsonSlurper.parseText(response)
@@ -230,20 +220,15 @@ for(def i=1; i<totalRows; i++){
 		fail = true
 		errorLog << "JSON error"
 		errorLog << httpStatus
-		errorLines << "FAIL line " + row + " : JSON error \n"
+		Functions.errorLines << "FAIL line " + row + " : JSON error \n"
 	}
 		
 	//Create and write .txt logs
 	if (fail){
-		def text = "  Row " + (i+1) + " - FAIL"
-		log.error text
-		errorLines << text + "\n"
-		Functions.writeListAsLinesToLog(errorLog, i, projectPath, date);
-		row.createCell(0).setCellValue("FAIL");
+		Functions.rowFailed(errorLog, i, projectPath, date, row);
 	}
 	else{
-		log.info "  Row " + (i+1) + " - PASS"
-		row.createCell(0).setCellValue("PASS");
+		Functions.rowPassed(i, row);
 	}
 
 	//stop loop
@@ -253,20 +238,14 @@ for(def i=1; i<totalRows; i++){
 }
 
 // -- AFTER ALL --
-//Save file - but only if not run on devOps
-if (projectPath != "D:\\a\\1\\s"){
-	Functions.saveFile("TestCases-Assistance-Quote", projectPath, wb);
-}
-if (errorLines.size() > 0) {
-	throw new Exception("Following testcases were FAILED: \n" + errorLines)
-}
+Functions.finishTestSuite(excelName, projectPath, wb);
 
 
 
 
 
 
-]]></script></con:config></con:testStep><con:testStep type="properties" name="Variables" id="ed3f5a57-408e-44d7-8f6b-e9d75b7c717d"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>digitalSigning</con:name><con:value>false</con:value></con:property><con:property><con:name>numberOfCars</con:name><con:value>1.0</con:value></con:property><con:property><con:name>numberOfMotors</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfBicyclesAndOthers</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfFamilyMembers</con:name><con:value>1.0</con:value></con:property><con:property><con:name>personalAssistance</con:name><con:value>true</con:value></con:property><con:property><con:name>luggage</con:name><con:value>true</con:value></con:property><con:property><con:name>frequencyCode</con:name><con:value>1</con:value></con:property><con:property><con:name>packageType</con:name><con:value>BE</con:value></con:property><con:property><con:name>returnCode</con:name><con:value>00000</con:value></con:property><con:property><con:name>premiumCar</con:name><con:value>70.0</con:value></con:property><con:property><con:name>premiumMotor</con:name><con:value>0.0</con:value></con:property><con:property><con:name>premiumBicycle</con:name><con:value>0.0</con:value></con:property><con:property><con:name>premiumPersonalAssistance</con:name><con:value>50.0</con:value></con:property><con:property><con:name>premiumLuggage</con:name><con:value>35.0</con:value></con:property><con:property><con:name>premiumTotal</con:name><con:value>155.0</con:value></con:property><con:property><con:name>premiumTotalInclDiscount</con:name><con:value>124.0</con:value></con:property><con:property><con:name>policyReference</con:name><con:value>"3001004514"</con:value></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="51a39b56-cad2-47cd-9dc0-3c99883cd34c" name="OfferAssistance"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="858ec51c-2ff7-4db6-aed5-76c8c1e82c13" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="OFFER" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="Offer1" id="582ad3ae-0d23-46be-8b47-77258ca45476"><con:settings/><con:config service="https://test.api.coronadirect.be" resourcePath="/external/assistance/insurance/v1/offer" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Offer1" id="53292f9e-1740-457e-8cf1-7507661abda4" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Ocp-Apim-Subscription-Key" value="8cd7290f9eab496880f72d1009a1c164" xmlns="http://eviware.com/soapui/config"/></con:setting></con:settings><con:endpoint>https://test.api.coronadirect.be</con:endpoint><con:request>
+]]></script></con:config></con:testStep><con:testStep type="properties" name="Variables" id="ed3f5a57-408e-44d7-8f6b-e9d75b7c717d"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>digitalSigning</con:name><con:value>false</con:value></con:property><con:property><con:name>numberOfCars</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfMotors</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfBicyclesAndOthers</con:name><con:value>2.0</con:value></con:property><con:property><con:name>numberOfFamilyMembers</con:name><con:value>1.0</con:value></con:property><con:property><con:name>personalAssistance</con:name><con:value>true</con:value></con:property><con:property><con:name>luggage</con:name><con:value>false</con:value></con:property><con:property><con:name>frequencyCode</con:name><con:value>1</con:value></con:property><con:property><con:name>packageType</con:name><con:value>BE</con:value></con:property><con:property><con:name>returnCode</con:name><con:value>99999</con:value></con:property><con:property><con:name>premiumCar</con:name><con:value>0.0</con:value></con:property><con:property><con:name>premiumMotor</con:name><con:value>0.0</con:value></con:property><con:property><con:name>premiumBicycle</con:name><con:value>20.0</con:value></con:property><con:property><con:name>premiumPersonalAssistance</con:name><con:value>50.0</con:value></con:property><con:property><con:name>premiumLuggage</con:name><con:value>35.0</con:value></con:property><con:property><con:name>premiumTotal</con:name><con:value>70.0</con:value></con:property><con:property><con:name>premiumTotalInclDiscount</con:name><con:value>56.0</con:value></con:property><con:property><con:name>policyReference</con:name><con:value>"3001004514"</con:value></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="51a39b56-cad2-47cd-9dc0-3c99883cd34c" name="OfferAssistance"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="858ec51c-2ff7-4db6-aed5-76c8c1e82c13" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="OFFER" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="Offer1" id="582ad3ae-0d23-46be-8b47-77258ca45476"><con:settings/><con:config service="https://test.api.coronadirect.be" resourcePath="/external/assistance/insurance/v1/offer" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Offer1" id="53292f9e-1740-457e-8cf1-7507661abda4" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Ocp-Apim-Subscription-Key" value="8cd7290f9eab496880f72d1009a1c164" xmlns="http://eviware.com/soapui/config"/></con:setting></con:settings><con:endpoint>https://test.api.coronadirect.be</con:endpoint><con:request>
 {
 
 "parties": [
@@ -1103,7 +1082,7 @@ if (errorLines.size() > 0) {
 	    }
 	}
 }
-</con:request><con:originalUri>https://test.api.coronadirect.be/external/assistance/insurance/v1/quote</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="862a590b-2a77-4d5b-8f59-017e84748eb1" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="OFFER-RUN" searchProperties="true"><con:settings/><con:testStep type="groovy" name="LoadTestData" id="748c6935-3414-41f6-83dc-1752400810a1"><con:settings/><con:config><script>import org.apache.poi.ss.usermodel.*
+</con:request><con:originalUri>https://test.api.coronadirect.be/external/assistance/insurance/v1/quote</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="862a590b-2a77-4d5b-8f59-017e84748eb1" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="OFFER-RUN" searchProperties="true"><con:settings/><con:testStep type="groovy" name="LoadTestData" id="748c6935-3414-41f6-83dc-1752400810a1"><con:settings/><con:config><script><![CDATA[import org.apache.poi.ss.usermodel.*
 import org.apache.poi.hssf.usermodel.*
 import org.apache.poi.ss.util.*
 import groovy.json.JsonSlurper
@@ -1111,7 +1090,7 @@ import groovy.json.JsonSlurper
 
 //Global variables
 def stopAtLine = 0  //0 = run all
-
+def excelName = "TestCases-Assistance-Offer"
 date = new Date().format( 'yyyyMMdd' )
 def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
 projectPath = groovyUtils.projectPath
@@ -1132,7 +1111,7 @@ Functions.printCall()
 
 	
 // Initiate EXCEL
-def inputStream = new FileInputStream(projectPath+"\\TestCases-Assistance-Offer.xls");
+def inputStream = new FileInputStream(projectPath + "\\" + excelName + ".xls");
 HSSFWorkbook wb = new HSSFWorkbook(inputStream);
 HSSFSheet ws = wb.getSheet("TestCases")  
 def totalRows = ws.getPhysicalNumberOfRows()
@@ -1144,7 +1123,7 @@ Functions.checkAndCreateFolder("Fails", projectPath, date)
 
 
 // Iterate rows / TESTCASES
-for(def i=1; i&lt;totalRows; i++){
+for(def i=1; i<totalRows; i++){
 	// Reset variables
 	def request = ""
 	def response = ""
@@ -1167,11 +1146,9 @@ for(def i=1; i&lt;totalRows; i++){
 	def Offer = "Offer" + familyMembers
 	def tStep = tCaseRun.getTestStepByName(Offer)
 	def runner = tStep.run(testRunner, context)
-	//testRunner.runTestStepByName(Offer)
 
 	//Request as String
 	request = runner.getTestStep().getPropertyValue('RawRequest')
-	//request = context.testCase.testSteps[Offer].getPropertyValue('RawRequest')
 	
 	
 	//Create requestLog
@@ -1187,8 +1164,6 @@ for(def i=1; i&lt;totalRows; i++){
 	
 	//if JSON is not correct, statusCode will be 500
 	if (httpStatusCode != "500"){
-
-		//response = context.testCase.testSteps[Offer].getPropertyValue('Response')
 		response = runner.getTestStep().getPropertyValue('Response')
 		def jsonSlurper = new JsonSlurper()
 		def object = jsonSlurper.parseText(response)
@@ -1209,19 +1184,17 @@ for(def i=1; i&lt;totalRows; i++){
 	// When httpStatusCode == 500:
 	else{ 
 		fail = true
-		errorLog &lt;&lt; "JSON error"
-		errorLog &lt;&lt; httpStatus
+		errorLog << "JSON error"
+		errorLog << httpStatus
+		Functions.errorLines << "FAIL line " + row + " : JSON error \n"
 	}
 		
 	//Create and write .txt logs
 	if (fail){
-		log.error "  Row " + (i+1) + " - FAIL"
-		Functions.writeListAsLinesToLog(errorLog, i, projectPath, date);
-		row.createCell(0).setCellValue("FAIL");
+		Functions.rowFailed(errorLog, i, projectPath, date, row);
 	}
 	else{
-		log.info "  Row " + (i+1) + " - PASS"
-		row.createCell(0).setCellValue("PASS");
+		Functions.rowPassed(i, row);
 	}
 
 	//stop loop
@@ -1231,12 +1204,10 @@ for(def i=1; i&lt;totalRows; i++){
 }
 
 // -- AFTER ALL --
-//Save file - but only if not run on devOps
-if (projectPath != "D:\\a\\1\\s"){
-	Functions.saveFile("TestCases-Assistance-Quote", projectPath, wb);
-}
+Functions.finishTestSuite(excelName, projectPath, wb);
 
 
 
 
-</script></con:config></con:testStep><con:testStep type="properties" name="Variables" id="30d1286c-7c1f-4020-9032-837fe15ee36e"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>policyReference</con:name><con:value>"3001004514"</con:value></con:property><con:property><con:name>digitalSigning</con:name><con:value>false</con:value></con:property><con:property><con:name>personalAssistance</con:name><con:value>false</con:value></con:property><con:property><con:name>luggage</con:name><con:value>false</con:value></con:property><con:property><con:name>frequencyCode</con:name><con:value>1</con:value></con:property><con:property><con:name>packageType</con:name><con:value>BE</con:value></con:property><con:property><con:name>licensePlatesCar</con:name><con:value/></con:property><con:property><con:name>licensePlatesMotor</con:name><con:value/></con:property><con:property><con:name>numberOfBicycles</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfPedelecs</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfHoverboards</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfSteps</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfSegways</con:name><con:value>0.0</con:value></con:property><con:property><con:name>contractEffectiveDate</con:name><con:value>2022-06-01</con:value></con:property><con:property><con:name>numberOfFamilyMembers</con:name><con:value>2.0</con:value></con:property><con:property><con:name>returnCode</con:name><con:value>99999</con:value></con:property><con:property><con:name>accountnumber</con:name><con:value>BE44897156894245</con:value></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+
+]]></script></con:config></con:testStep><con:testStep type="properties" name="Variables" id="30d1286c-7c1f-4020-9032-837fe15ee36e"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>policyReference</con:name><con:value>"3001004514"</con:value></con:property><con:property><con:name>digitalSigning</con:name><con:value>false</con:value></con:property><con:property><con:name>personalAssistance</con:name><con:value>false</con:value></con:property><con:property><con:name>luggage</con:name><con:value>false</con:value></con:property><con:property><con:name>frequencyCode</con:name><con:value>1</con:value></con:property><con:property><con:name>packageType</con:name><con:value>BE</con:value></con:property><con:property><con:name>licensePlatesCar</con:name><con:value/></con:property><con:property><con:name>licensePlatesMotor</con:name><con:value/></con:property><con:property><con:name>numberOfBicycles</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfPedelecs</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfHoverboards</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfSteps</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfSegways</con:name><con:value>0.0</con:value></con:property><con:property><con:name>contractEffectiveDate</con:name><con:value>2022-06-01</con:value></con:property><con:property><con:name>numberOfFamilyMembers</con:name><con:value>2.0</con:value></con:property><con:property><con:name>returnCode</con:name><con:value>99999</con:value></con:property><con:property><con:name>accountnumber</con:name><con:value>BE44897156894245</con:value></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

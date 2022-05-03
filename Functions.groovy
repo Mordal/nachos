@@ -8,6 +8,21 @@ class Functions{
     def testRunner
     def log
     
+	def errorLines = []
+
+	//TestFunction - Used to confirm initialisation of this file
+	def printCall(){
+		log.info "Function.groovy is loaded"
+	}
+
+	//Initiate folders
+	def checkAndCreateFolder(name, path, date){
+		File directory = new File(path + "\\" + name + "\\" + date);
+		if (! directory.exists()){
+		directory.mkdirs();
+		}
+	}
+
 	// Find the column number for given column name
 	def getColumn(name, ws, totalColumns){
 		def row = ws.getRow(0)
@@ -26,9 +41,6 @@ class Functions{
 	//Return the value of a cell, rather than the formula and no matter what type
 	def getCellValue(cell){
 		def value
-	//	log.info cell.getCellType()
-	//	log.info cell.getCellType().getCode()
-
 		if (null != cell) {
 			// The .getCellType() methode returns a numeric value or the name of the type depending on the POI version used; 
 			// This is coverd in the switch-case.
@@ -73,6 +85,27 @@ class Functions{
 		return value.toString()
 	}
 
+	//check the difference between 2 values: <=0.05 is acceptable
+	def checkValues(val1,val2){
+		def float dec1 
+		def float dec2
+		try{
+			dec1 = Float.parseFloat(val1);
+			dec2 = Float.parseFloat(val2);
+		}
+		catch(Exception e){
+			log.info "EXCEPTION val1: " + val1
+			log.info "EXCEPTION val2: " +val2
+		}
+		//make the value absolute and truncate at 2 decimals
+		def difference = Math.abs(dec1 - dec2).trunc(2)
+		if (difference > 0.05){
+			return false
+		}else{
+			return true
+		}
+	}
+
 	//create Error Log Text from given arguments
 	def createErrorLogText(message, expected, result){
 		def errorText = []
@@ -84,14 +117,19 @@ class Functions{
 		return errorText
 	}
 
-
-	//Initiate folders
-	def checkAndCreateFolder(name, path, date){
-		File directory = new File(path + "\\" + name + "\\" + date);
-		if (! directory.exists()){
-		directory.mkdirs();
-		}
+	def rowPassed(i, row){
+		log.info "  Row " + (i+1) + " - PASS"
+		row.createCell(0).setCellValue("PASS");
 	}
+
+	def rowFailed(errorLog, i, projectPath, date, row){
+		def text = "  Row " + (i+1) + " - FAIL"
+		log.error text
+		errorLines << text + "\n"
+		writeListAsLinesToLog(errorLog, i, projectPath, date);
+		row.createCell(0).setCellValue("FAIL");
+	}
+
 
 	//Save xls File
 	def saveFile(name, path, wb){
@@ -117,29 +155,15 @@ class Functions{
 		}
 	}
 
-	//check the difference between 2 values: <=0.05 is acceptable
-	def checkValues(val1,val2){
-		def float dec1 
-		def float dec2
-		try{
-			dec1 = Float.parseFloat(val1);
-			dec2 = Float.parseFloat(val2);
+	def finishTestSuite(excelName, projectPath, wb){
+		//Save file - but only if not run on devOps
+		if (projectPath != "D:\\a\\1\\s"){
+			saveFile(excelName, projectPath, wb);
 		}
-		catch(Exception e){
-			log.info "EXCEPTION val1: " + val1
-			log.info "EXCEPTION val2: " +val2
+		
+		//Throw error to force the state of the pipeline-TestCase to FAILED
+		if (errorLines.size() > 0) {
+			throw new Exception("Following testcase(s) FAILED: \n" + errorLines)
 		}
-		//make the value absolute and truncate at 2 decimals
-		def difference = Math.abs(dec1 - dec2).trunc(2)
-		if (difference > 0.05){
-			return false
-		}else{
-			return true
-		}
-	}
-	
-	//TestFunction
-	def printCall(){
-		log.info "Function.groovy is loaded"
 	}
 }
