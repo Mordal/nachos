@@ -254,10 +254,10 @@ Functions.finishTestSuite(excelName, projectPath, wb);
         "firstGivenName": "Offer VII",
         "birthDate": "1960-10-01",
         "genderCode": "1",
-        "streetName": "Jan Frans Boeckstuynsstraat",
-        "houseNumberIdentifier": "45",
-        "boxNumberIdentifier": "",
-        "postalCode": "2800",
+        "streetName": "${Variables#streetName}",
+        "houseNumberIdentifier": "${Variables#houseNumberIdentifier}",
+        "boxNumberIdentifier": "${Variables#boxNumberIdentifier}",
+        "postalCode": "${Variables#postalCode}",
         "cityName": "MECHELEN",
         "languageCode": "1",
         "homeTelephone": "031112233",
@@ -306,15 +306,15 @@ Functions.finishTestSuite(excelName, projectPath, wb);
 {
 
 "parties": [
-        {
+              {
         "familyName": "Assitance",
         "firstGivenName": "Offer VII",
         "birthDate": "1960-10-01",
         "genderCode": "1",
-        "streetName": "Jan Frans Boeckstuynsstraat",
-        "houseNumberIdentifier": "45",
-        "boxNumberIdentifier": "",
-        "postalCode": "2800",
+        "streetName": "${Variables#streetName}",
+        "houseNumberIdentifier": "${Variables#houseNumberIdentifier}",
+        "boxNumberIdentifier": "${Variables#boxNumberIdentifier}",
+        "postalCode": "${Variables#postalCode}",
         "cityName": "MECHELEN",
         "languageCode": "1",
         "homeTelephone": "031112233",
@@ -372,15 +372,15 @@ Functions.finishTestSuite(excelName, projectPath, wb);
 {
 
 "parties": [
-        {
+               {
         "familyName": "Assitance",
         "firstGivenName": "Offer VII",
         "birthDate": "1960-10-01",
         "genderCode": "1",
-        "streetName": "Jan Frans Boeckstuynsstraat",
-        "houseNumberIdentifier": "45",
-        "boxNumberIdentifier": "",
-        "postalCode": "2800",
+        "streetName": "${Variables#streetName}",
+        "houseNumberIdentifier": "${Variables#houseNumberIdentifier}",
+        "boxNumberIdentifier": "${Variables#boxNumberIdentifier}",
+        "postalCode": "${Variables#postalCode}",
         "cityName": "MECHELEN",
         "languageCode": "1",
         "homeTelephone": "031112233",
@@ -447,15 +447,15 @@ Functions.finishTestSuite(excelName, projectPath, wb);
 {
 
 "parties": [
-        {
+              {
         "familyName": "Assitance",
         "firstGivenName": "Offer VII",
         "birthDate": "1960-10-01",
         "genderCode": "1",
-        "streetName": "Jan Frans Boeckstuynsstraat",
-        "houseNumberIdentifier": "45",
-        "boxNumberIdentifier": "",
-        "postalCode": "2800",
+        "streetName": "${Variables#streetName}",
+        "houseNumberIdentifier": "${Variables#houseNumberIdentifier}",
+        "boxNumberIdentifier": "${Variables#boxNumberIdentifier}",
+        "postalCode": "${Variables#postalCode}",
         "cityName": "MECHELEN",
         "languageCode": "1",
         "homeTelephone": "031112233",
@@ -531,15 +531,15 @@ Functions.finishTestSuite(excelName, projectPath, wb);
 {
 
 "parties": [
-        {
+               {
         "familyName": "Assitance",
         "firstGivenName": "Offer VII",
         "birthDate": "1960-10-01",
         "genderCode": "1",
-        "streetName": "Jan Frans Boeckstuynsstraat",
-        "houseNumberIdentifier": "45",
-        "boxNumberIdentifier": "",
-        "postalCode": "2800",
+        "streetName": "${Variables#streetName}",
+        "houseNumberIdentifier": "${Variables#houseNumberIdentifier}",
+        "boxNumberIdentifier": "${Variables#boxNumberIdentifier}",
+        "postalCode": "${Variables#postalCode}",
         "cityName": "MECHELEN",
         "languageCode": "1",
         "homeTelephone": "031112233",
@@ -624,15 +624,15 @@ Functions.finishTestSuite(excelName, projectPath, wb);
 {
 
 "parties": [
-        {
+               {
         "familyName": "Assitance",
         "firstGivenName": "Offer VII",
         "birthDate": "1960-10-01",
         "genderCode": "1",
-        "streetName": "Jan Frans Boeckstuynsstraat",
-        "houseNumberIdentifier": "45",
-        "boxNumberIdentifier": "",
-        "postalCode": "2800",
+        "streetName": "${Variables#streetName}",
+        "houseNumberIdentifier": "${Variables#houseNumberIdentifier}",
+        "boxNumberIdentifier": "${Variables#boxNumberIdentifier}",
+        "postalCode": "${Variables#postalCode}",
         "cityName": "MECHELEN",
         "languageCode": "1",
         "homeTelephone": "031112233",
@@ -726,15 +726,15 @@ Functions.finishTestSuite(excelName, projectPath, wb);
 {
 
 "parties": [
-        {
+               {
         "familyName": "Assitance",
         "firstGivenName": "Offer VII",
         "birthDate": "1960-10-01",
         "genderCode": "1",
-        "streetName": "Jan Frans Boeckstuynsstraat",
-        "houseNumberIdentifier": "45",
-        "boxNumberIdentifier": "",
-        "postalCode": "2800",
+        "streetName": "${Variables#streetName}",
+        "houseNumberIdentifier": "${Variables#houseNumberIdentifier}",
+        "boxNumberIdentifier": "${Variables#boxNumberIdentifier}",
+        "postalCode": "${Variables#postalCode}",
         "cityName": "MECHELEN",
         "languageCode": "1",
         "homeTelephone": "031112233",
@@ -837,15 +837,15 @@ Functions.finishTestSuite(excelName, projectPath, wb);
 {
 
 "parties": [
-        {
+               {
         "familyName": "Assitance",
         "firstGivenName": "Offer VII",
         "birthDate": "1960-10-01",
         "genderCode": "1",
-        "streetName": "Jan Frans Boeckstuynsstraat",
-        "houseNumberIdentifier": "45",
-        "boxNumberIdentifier": "",
-        "postalCode": "2800",
+        "streetName": "${Variables#streetName}",
+        "houseNumberIdentifier": "${Variables#houseNumberIdentifier}",
+        "boxNumberIdentifier": "${Variables#boxNumberIdentifier}",
+        "postalCode": "${Variables#postalCode}",
         "cityName": "MECHELEN",
         "languageCode": "1",
         "homeTelephone": "031112233",
@@ -957,15 +957,15 @@ Functions.finishTestSuite(excelName, projectPath, wb);
 {
 
 "parties": [
-        {
+               {
         "familyName": "Assitance",
         "firstGivenName": "Offer VII",
         "birthDate": "1960-10-01",
         "genderCode": "1",
-        "streetName": "Jan Frans Boeckstuynsstraat",
-        "houseNumberIdentifier": "45",
-        "boxNumberIdentifier": "",
-        "postalCode": "2800",
+        "streetName": "${Variables#streetName}",
+        "houseNumberIdentifier": "${Variables#houseNumberIdentifier}",
+        "boxNumberIdentifier": "${Variables#boxNumberIdentifier}",
+        "postalCode": "${Variables#postalCode}",
         "cityName": "MECHELEN",
         "languageCode": "1",
         "homeTelephone": "031112233",
@@ -1210,4 +1210,4 @@ Functions.finishTestSuite(excelName, projectPath, wb);
 
 
 
-]]></script></con:config></con:testStep><con:testStep type="properties" name="Variables" id="30d1286c-7c1f-4020-9032-837fe15ee36e"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>policyReference</con:name><con:value>"3001004514"</con:value></con:property><con:property><con:name>digitalSigning</con:name><con:value>false</con:value></con:property><con:property><con:name>personalAssistance</con:name><con:value>false</con:value></con:property><con:property><con:name>luggage</con:name><con:value>false</con:value></con:property><con:property><con:name>frequencyCode</con:name><con:value>1</con:value></con:property><con:property><con:name>packageType</con:name><con:value>BE</con:value></con:property><con:property><con:name>licensePlatesCar</con:name><con:value/></con:property><con:property><con:name>licensePlatesMotor</con:name><con:value/></con:property><con:property><con:name>numberOfBicycles</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfPedelecs</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfHoverboards</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfSteps</con:name><con:value>0.0</con:value></con:property><con:property><con:name>numberOfSegways</con:name><con:value>0.0</con:value></con:property><con:property><con:name>contractEffectiveDate</con:name><con:value>2022-06-01</con:value></con:property><con:property><con:name>numberOfFamilyMembers</con:name><con:value>2.0</con:value></con:property><con:property><con:name>returnCode</con:name><con:value>99999</con:value></con:property><con:property><con:name>accountnumber</con:name><con:value>BE44897156894245</con:value></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+]]></script></con:config></con:testStep><con:testStep type="properties" name="Variables" id="30d1286c-7c1f-4020-9032-837fe15ee36e"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>policyReference</con:name><con:value>"3001005225"</con:value></con:property><con:property><con:name>digitalSigning</con:name><con:value>false</con:value></con:property><con:property><con:name>personalAssistance</con:name><con:value>false</con:value></con:property><con:property><con:name>luggage</con:name><con:value>false</con:value></con:property><con:property><con:name>frequencyCode</con:name><con:value>1</con:value></con:property><con:property><con:name>packageType</con:name><con:value>EU</con:value></con:property><con:property><con:name>licensePlatesCar</con:name><con:value>"test1"</con:value></con:property><con:property><con:name>licensePlatesMotor</con:name><con:value/></con:property><con:property><con:name>numberOfBicycles</con:name><con:value>1.0</con:value></con:property><con:property><con:name>numberOfPedelecs</con:name><con:value>1.0</con:value></con:property><con:property><con:name>numberOfHoverboards</con:name><con:value>1.0</con:value></con:property><con:property><con:name>numberOfSteps</con:name><con:value>1.0</con:value></con:property><con:property><con:name>numberOfSegways</con:name><con:value>1.0</con:value></con:property><con:property><con:name>contractEffectiveDate</con:name><con:value>2022-06-01</con:value></con:property><con:property><con:name>numberOfFamilyMembers</con:name><con:value>1.0</con:value></con:property><con:property><con:name>returnCode</con:name><con:value>00000</con:value></con:property><con:property><con:name>accountnumber</con:name><con:value>BE44897156894245</con:value></con:property><con:property><con:name>streetName</con:name><con:value/></con:property><con:property><con:name>houseNumberIdentifier</con:name><con:value/></con:property><con:property><con:name>postalCode</con:name><con:value/></con:property><con:property><con:name>boxNumberIdentifier</con:name><con:value/></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
